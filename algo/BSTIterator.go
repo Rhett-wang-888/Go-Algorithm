@@ -19,6 +19,7 @@ func Constructor(root *TreeNode) (it BSTIterator) {
 	it.inorder(root)
 	return
 }
+
 func (it *BSTIterator) inorder(node *TreeNode) {
 	if node == nil {
 		return
