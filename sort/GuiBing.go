@@ -87,5 +87,5 @@ func sort1(head, tail *ListNode) *ListNode {
 	}
 	mid := slow
 
-	return merge(sort1(head, mid), sort1(mid, tail))
+	return merge1(sort1(head, mid), sort1(mid, tail))
 }
