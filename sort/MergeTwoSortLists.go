@@ -190,3 +190,187 @@ func mergeTwoListS4(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 	return prehead.Next
 }
+
+func mergeTwoList5(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l1 == nil {
+		return l2
+	} else if l2 == nil {
+		return l1
+	}
+
+	cur := new(ListNode)
+	res := cur
+
+	for l1 != nil && l2 != nil {
+		if l1.Val <= l2.Val {
+			cur.Next = l1
+			l1 = l1.Next
+		} else {
+			cur.Next = l2
+			l2 = l2.Next
+		}
+		cur = cur.Next
+	}
+	if l1 != nil {
+		cur.Next = l1
+	}
+	if l2 != nil {
+		cur.Next = l2
+	}
+
+	return res.Next
+}
+
+func mergeTwoList6(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l1 == nil {
+		return l2
+	}
+	if l2 == nil {
+		return l1
+	}
+
+	var l3Fast *ListNode = nil
+	var l3Last *ListNode = nil
+	var newNode *ListNode = nil
+
+	for true {
+		if l1.Val > l2.Val {
+			newNode = l2
+			l2 = l2.Next
+		} else {
+			newNode = l1
+			l1 = l1.Next
+		}
+
+		if l3Fast == nil {
+			l3Fast = newNode
+			l3Last = newNode
+		} else {
+			l3Last.Next = newNode
+			l3Last = newNode
+		}
+
+		if l1 == nil {
+			l3Fast = newNode
+			l3Last = newNode
+		} else {
+			l3Last.Next = newNode
+			l3Last = newNode
+		}
+		if l1 == nil {
+			l3Last.Next = l2
+			break
+		} else if l2 == nil {
+			l3Last.Next = l1
+			break
+		}
+	}
+
+	return l3Fast
+}
+
+func mergeTwoList7(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l2 == nil {
+		return l1
+	} else if l1 == nil {
+		return l2
+	} else if l1.Val < l2.Val {
+		l1.Next = mergeTwoList7(l1.Next, l2)
+		return l1
+	} else {
+		l2.Next = mergeTwoList7(l1, l2.Next)
+		return l2
+	}
+
+}
+func mergeTwoList8(l1 *ListNode, l2 *ListNode) *ListNode {
+	dummyHead := &ListNode{}
+	p := dummyHead
+
+	for l1 != nil && l2 != nil {
+		if l1.Val < l2.Val {
+			p.Next = l1
+			l1 = l1.Next
+			p = p.Next
+		} else {
+			p.Next = l2
+			l2 = l2.Next
+			p = p.Next
+		}
+
+	}
+
+	if l1 == nil {
+		p.Next = l2
+	} else {
+		p.Next = l1
+	}
+
+	return dummyHead.Next
+}
+func mergeTwoList11(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l1 == nil {
+		return l2
+	} else if l2 == nil {
+		return l1
+	}
+
+	cur := new(ListNode)
+	res := cur
+
+	for l1 != nil && l2 != nil {
+		if l1.Val <= l2.Val {
+			cur.Next = l1
+			l1 = l1.Next
+		} else {
+			cur.Next = l2
+			l2 = l2.Next
+		}
+		cur = cur.Next
+	}
+
+	if l1 != nil {
+		cur.Next = l1
+	}
+	if l2 != nil {
+		cur.Next = l2
+	}
+
+	return res.Next
+}
+func mergeTwoList13(list1 *ListNode, list2 *ListNode) *ListNode {
+	dummyHead := &ListNode{}
+	cursor := dummyHead
+
+	for list1 != nil && list2 != nil {
+		if list1.Val < list2.Val {
+			cursor.Next = list1
+			list1 = list1.Next
+		} else {
+			cursor.Next = list2
+			list2 = list2.Next
+		}
+		cursor = cursor.Next
+	}
+	if list1 == nil {
+		cursor.Next = list2
+	} else {
+		cursor.Next = list1
+	}
+
+	return dummyHead.Next
+}
+
+func mergeTwoList12(list1 *ListNode, list2 *ListNode) *ListNode {
+	if list1 == nil {
+		return list2
+	} else if list2 == nil {
+		return list1
+	} else if list1.Val < list2.Val {
+		list1.Next = mergeTwoList12(list1.Next, list2)
+		return list1
+	} else {
+		list2.Next = mergeTwoList12(list1, list2.Next)
+		return list2
+	}
+}
