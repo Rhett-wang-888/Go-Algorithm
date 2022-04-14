@@ -11,6 +11,21 @@ import (
 	"math/rand"
 )
 
+func insertSort4(nums []int) []int {
+	length := len(nums)
+	for i := 1; i < length; i++ {
+		key := nums[i]
+		j := i - 1
+
+		for j >= 0 && nums[j] > key {
+			nums[j+1] = nums[j]
+			j -= 1
+		}
+		nums[i+1] = key
+	}
+	fmt.Println(nums)
+	return nums
+}
 func insertSort3(nums []int) []int {
 	length := len(nums)
 	for j := 1; j < length; j++ {
